@@ -65,6 +65,7 @@ newBoost.position = new BABYLON.Vector3(xFn(t), 3.2, zFn(t));
 newBoost.rotation.y = -derivAngle(t, xFn, zFn);
 newBoost.setEnabled(true);
 boosts.push(newBoost);
+boostMesh.scaling = new BABYLON.Vector3(1, 1, 5);
 }
 
 // Place boosts here
