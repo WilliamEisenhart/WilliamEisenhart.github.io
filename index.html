@@ -57,12 +57,12 @@ BABYLON.SceneLoader.ImportMesh(null, "resources/", "28005365.obj", scene, functi
 var boostMesh = meshes[0], boosts = [];
 boostMesh.material = new BABYLON.StandardMaterial("boostMaterial", scene);
 boostMesh.material.diffuseColor = new BABYLON.Color3(1, 1, 0);
-boostMesh.scaling = new BABYLON.Vector3(5, 1, 1);
+boostMesh.scaling = new BABYLON.Vector3(5, 5, 1);
 boostMesh.setEnabled(false);
 function boostAt(xFn, zFn, t) {
 var newBoost = boostMesh.clone('boost');
 newBoost.position = new BABYLON.Vector3(xFn(t), 3.2, zFn(t));
-newBoost.rotation.y = -derivAngle(t, xFn, zFn);
+newBoost.rotation.x = -derivAngle(t, xFn, zFn);
 newBoost.setEnabled(true);
 boosts.push(newBoost);
 }
