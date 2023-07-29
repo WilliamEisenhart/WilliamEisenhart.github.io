@@ -62,7 +62,7 @@ boostMesh.setEnabled(false);
 function boostAt(xFn, zFn, t) {
 var newBoost = boostMesh.clone('boost');
 newBoost.position = new BABYLON.Vector3(xFn(t), 3.2, zFn(t));
-newBoost.rotation.x = -derivAngle(t, xFn, zFn);
+newBoost.rotation.y = -derivAngle(t, xFn, zFn);
 newBoost.setEnabled(true);
 boosts.push(newBoost);
 }
