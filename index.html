@@ -6,9 +6,20 @@
 <script src="babylon.js"></script>
 <script src="babylon.objFileLoader.min.js"></script>
 <script>
+function startGame() {
+    var startScreen = document.getElementById('startScreen');
+    startScreen.style.display = 'none';
+
+    var canvas = document.getElementById('renderCanvas');
+    var engine = new BABYLON.Engine(canvas, true);
+}
+
+
 function start() {
 var canvas = document.getElementById('renderCanvas');
 var engine = new BABYLON.Engine(canvas, true);
+
+
 
 var keys = {};
 window.addEventListener('keydown', function(e) {
@@ -404,14 +415,42 @@ engine.runRenderLoop(scene.render.bind(scene));
 window.addEventListener('resize', engine.resize.bind(engine));
 }
 
-function win(){
-window.location.reload();
-alert("You WIN!");
+function win() {
+  // Display a message and a restart button
+  var endScreen = document.createElement("div");
+  endScreen.innerHTML = "<h1>You WIN!</h1><button onclick='restart()'>Reload The Page To Restart</button>";
+  endScreen.style.position = "absolute";
+  endScreen.style.top = "50%";
+  endScreen.style.left = "50%";
+  endScreen.style.transform = "translate(-50%, -50%)";
+  endScreen.style.padding = "20px";
+  endScreen.style.background = "#fff";
+  endScreen.style.color = "#000";
+  endScreen.style.fontFamily = "sans-serif";
+  endScreen.style.fontSize = "24px";
+  endScreen.style.border = "2px solid #000";
+  document.body.appendChild(endScreen);
 }
 
-function lost(){
-window.location.reload();
-alert("you lose!");
+function lost() {
+  // Display a message and a restart button
+  var endScreen = document.createElement("div");
+  endScreen.innerHTML = "<h1>You lose!</h1><button onclick='restart()'>Reload The Page To Restart</button>";
+  endScreen.style.position = "absolute";
+  endScreen.style.top = "50%";
+  endScreen.style.left = "50%";
+  endScreen.style.transform = "translate(-50%, -50%)";
+  endScreen.style.padding = "20px";
+  endScreen.style.background = "#fff";
+  endScreen.style.color = "#000";
+  endScreen.style.fontFamily = "sans-serif";
+  endScreen.style.fontSize = "24px";
+  endScreen.style.border = "2px solid #000";
+  document.body.appendChild(endScreen);
+}
+
+function restart() {
+  window.location.reload();
 }
 
 </script>
@@ -437,12 +476,58 @@ color:#ccc;
 font: 52px sans-serif;
 }
 
+#endScreen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background: #fff;
+  color: #000;
+  font-family: sans-serif;
+  font-size: 24px;
+  border: 8px solid #000;
+}
+
+  #startScreen {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+height: 100%;
+      transform: translate(-50%, -50%);
+      padding: 20px;
+      background: #fff;
+      color: #000;
+      font-family: sans-serif;
+      font-size: 24px;
+      border: 8px solid #000;
+    }
+
+    #startButton {
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      font-family: sans-serif;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+    }
 </style>
 </head>
 <body onload="start()">
+
+  <div id="startScreen">
+  	<center>
+    <h1>Welcome to the 3D Game!</h1>
+    <p>Use W, A, S, D keys to control the ball and left click to move the camera.</p>
+   <button id="startButton" onclick="startGame()">Start Game</button>
+    <p>(Do Not Move The Ball Until You Click Start Or You Might Lose Before The Game Starts)</p>
+</center>
+  </div>
+
 <canvas id="renderCanvas"></canvas>
 
 <div id="timer">00:00</div>
-
 </body>
 </html>
